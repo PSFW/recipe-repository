@@ -1,0 +1,88 @@
+@base <http://example.org/>.
+prefix : <http://example.org/>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+prefix gs1: <http://gs1.org/>
+prefix foodProduct: <gs1:FoodBeverageTobaccoProduct>
+prefix schema: <http://schema.org/>
+prefix recipe: <schema:Recipe>
+prefix fo: <https://www.bbc.co.uk/ontologies/fo/> # As described in https://www.bbc.co.uk/ontologies/fo/1.1.ttl
+prefix bbcRecipe: <fo:Recipe>
+prefix nutritionRepo: <https://github.com/PSFW/nutrition-repository>
+
+
+<https://recipes.sainsburys.co.uk/recipes/main-courses/gnocchi-and-vegetable-bake>
+  rdf:type bbcRecipe: ;
+  schema:additionalType recipe: ;
+  schema:url "https://recipes.sainsburys.co.uk/recipes/main-courses/gnocchi-and-vegetable-bake" ;
+#   recipe:cookingTime <http://example.org/#cookTime> ;
+  bbcRecipe:ingredients [
+      a rdf:Bag ;
+      rdf:_1 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:fresh-gnocchi> ;
+          fo:metric_quantity "500g" ;
+          schema:recipeIngredient "500g fresh gnocchi" ;
+      ] ;
+      rdf:_2 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:red-onion> ;
+          fo:quantity 1 ;
+          schema:recipeIngredient "1 red onion" ;
+      ] ; 
+      rdf:_3 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:olive-oil> ;
+          fo:imperial_quantity "1 tbsp" ;
+          schema:recipeIngredient "1 tbsp olive oil" ;
+      ] ;
+      rdf:_4 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:green-pepper> ;
+          fo:quantity 1 ;
+          schema:recipeIngredient "1 green pepper, deseeded and cut into chunks" ;
+      ] ;
+      rdf:_5 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:tomato-pasta-sauce> ;
+          fo:metric_quantity "700g" ;
+          schema:recipeIngredient "700g jar tomato and herb pasta sauce" ;
+      ] ;
+      rdf:_6 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:basil> ;
+          fo:metric_quantity "14g" ;
+          schema:recipeIngredient "14g fresh basil, leaves picked and washed" ;
+      ] ;
+      rdf:_7 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:breadcrumbs> ;
+          fo:metric_quantity "60g" ;
+          schema:recipeIngredient "60g breadcrumbs, made from ¼ white baton" ;
+      ] ;
+      rdf:_8 [
+          rdf:type fo:Ingredient ;
+          fo:food <nutritionRepo:generic:mozzarella> ;
+          fo:metric_quantity "125g" ;
+          schema:recipeIngredient "125g mozzarella, drained and roughly torn" ;
+      ] ;
+  ] ;
+  bbcRecipe:serves "4" ; # This can be a range e.g. "2-3".
+  schema:recipeYeild [
+      rdf:type schema:QuantitiveValue ;
+      schema:value 4 ;
+      ];
+  bbcRecipe:produces <http://example.org/#producedFood> .
+
+<http://example.org/#producedFood>
+  rdf:type fo:Food ;
+  fo:Food:shopping_category <shopping-category-object> ;
+  fo:Food:at_its_best <season-object> .
+  
+
+<nutritionRepo:generic:gnocchi>
+
+# // ToDo: Add to the steps (step 0a, 0b etc.) for sorting out ingredients list with comma in it.
+
+# <http://example.org/#cookTime>
+#   rdf:type schema:Duration ;
+#   schema:Duration: .
